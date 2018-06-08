@@ -18,7 +18,7 @@ module.exports = {
     app.options.fingerprint = app.options.fingerprint || {};
     app.options.fingerprint.generateAssetMap = true;
 
-    if (process.env.EXCLUDE_EMBER_ASSETS) {
+    if (process.env.EXCLUDE_EMBER_ASSETS && app.legacyFilesToAppend) {
       var excludeEmberAssets = process.env.EXCLUDE_EMBER_ASSETS;
       var excludeRegex = new RegExp("(?:" + excludeEmberAssets.replace(",", "|") + ")\\.js$");
       var excludeAssets = app.legacyFilesToAppend.filter(function(asset){ return excludeRegex.test(asset); });
